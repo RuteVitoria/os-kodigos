@@ -1,27 +1,89 @@
-# os-prototipo
+# Sistema de Ordem de Serviço
 
-Protótipo de Ordem de Serviço (Frontend Angular + Backend .NET 8)
-Tema frontend: rosinha minimalista
-Backend: .NET 8 (em memória, sem banco)
+Este projeto é um sistema de Ordem de Serviço com **frontend em Angular (TypeScript)** e **backend em C# (.NET 7)**. O sistema permite que usuários façam login, criem contas e gerenciem ordens de serviço com rotas protegidas por autenticação JWT.
 
-## Como rodar
+---
 
-### Backend (.NET 8)
-1. Abra o terminal em `backend/`
-2. `dotnet restore`
-3. `dotnet run --project backend`  # API rodará por padrão em https://localhost:7236 ou http://localhost:5236
+## Tecnologias Utilizadas
 
-### Frontend (Angular)
-1. Abra o terminal em `frontend/`
-2. `npm install`
-3. `npm start` ou `npx ng serve --open`
-4. Acesse http://localhost:4200
+### Frontend
+- Angular 16
+- TypeScript
+- Angular Material
+- RxJS
+- JWT para autenticação
 
-### Credenciais para teste
-- email: user@example.com
-- password: senha123
+### Backend
+- .NET 7 (ASP.NET Core Web API)
+- C#
+- Entity Framework Core
+- JWT para autenticação
+- SQLite
 
-Observações:
-- Upload de foto é enviado como FormData para `/api/orders`.
-- Backend mantém ordens em memória durante a execução (simulação).
-- JWT simples é retornado no login para proteger rota `/api/orders`.
+---
+
+## Pré-requisitos
+
+Antes de começar, certifique-se de ter instalado:
+
+- [Node.js](https://nodejs.org/) (v18+)
+- [Angular CLI](https://angular.io/cli)
+- [.NET 7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
+- [SQLite](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads) (ou outro banco)
+- Git
+
+---
+
+## Passo a passo para rodar o projeto
+
+1. Clonar o repositório
+
+git clone https://github.com/SEU_USUARIO/sistema-os.git
+cd os-base
+
+2. Backend (.NET)
+
+- Navegue até a pasta do backend:
+
+cd OrdemServicoApi
+
+- Restaurar pacotes NuGet:
+
+dotnet restore
+
+3. Criar banco de dados e rodar migrations (opcional):
+
+dotnet ef database update
+
+4. Executar a API:
+
+dotnet run
+OBS: A API estará disponível em http://localhost:5008.
+
+5. Navegue até a pasta do frontend:
+
+cd os-base
+
+6. Instalar dependências:
+
+npm install
+
+7. Configurar URL da API no auth.service.ts:
+
+private apiUrl = 'http://localhost:5008/api/Auth';
+
+8. Executar a aplicação Angular:
+
+ng serve
+OBS: O frontend estará disponível em http://localhost:4200.
+
+- Funcionalidades
+
+Registro de usuário
+
+Login com JWT
+
+Criação de Ordem de Serviço
+
+Logout
+
