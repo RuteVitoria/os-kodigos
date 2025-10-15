@@ -1,0 +1,85 @@
+<div class="os-container">
+  <mat-card>
+    <h2>Ordem de Serviço</h2>
+
+    <form [formGroup]="osForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Descrição das Atividades</mat-label>
+        <textarea
+          matInput
+          rows="4"
+          formControlName="descricao"
+          placeholder="Descreva o que foi feito..."
+        ></textarea>
+      </mat-form-field>
+
+      <section class="example-section" [formGroup]="osForm">
+        <h3><strong>Checklist</strong></h3>
+
+        <mat-checkbox formControlName="item1">Equipamento limpo</mat-checkbox>
+        <mat-checkbox formControlName="item2">Peças substituídas</mat-checkbox>
+        <mat-checkbox formControlName="item3">Teste de funcionamento</mat-checkbox>
+        <mat-checkbox formControlName="item4">Área organizada após o serviço</mat-checkbox>
+      </section>
+
+        <div class="upload-section">
+        <h3><strong>Comprovante da Atividade</strong></h3>
+
+        <input
+            type="file"
+            #fileInput
+            hidden
+            (change)="onFileSelected($event)"
+            accept="image/*"
+        />
+
+        <div class="button-center">
+            <button
+            mat-raised-button
+            color="accent"
+            type="button"
+            (click)="fileInput.click()"
+            class="small-button"
+            [disabled]="!!imagePreview"
+            >
+            <mat-icon>open_in_new</mat-icon>
+            Selecionar Imagem
+            </button>
+
+            <button
+            *ngIf="imagePreview"
+            mat-icon-button
+            color="warn"
+            aria-label="Remover imagem"
+            (click)="removeImage()"
+            class="delete-btn"
+            >
+            <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+
+        <div *ngIf="imagePreview" class="preview">
+            <img [src]="imagePreview" alt="Pré-visualização" />
+        </div>
+
+        <mat-progress-bar
+            *ngIf="uploading"
+            mode="determinate"
+            [value]="uploadProgress"
+        ></mat-progress-bar>
+        </div>
+
+      <div class="button-center">
+        <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="small-button"
+        >
+            Enviar OS
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

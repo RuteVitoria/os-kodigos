@@ -1,0 +1,33 @@
+<div class="login-container">
+  <mat-card>
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="Digite seu email">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput formControlName="password" type="password" placeholder="Digite sua senha">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="loading">
+        <ng-container *ngIf="!loading">Entrar</ng-container>
+          <ng-container *ngIf="loading">
+            <mat-progress-spinner
+              diameter="22"
+              mode="indeterminate"
+              color="accent"
+              style="margin:auto;"
+            ></mat-progress-spinner>
+          </ng-container>
+      </button>
+
+    </form>
+    <button mat-button color="accent" class="full-width" routerLink="/register" [disabled]="loading">
+      Criar conta
+    </button>
+  </mat-card>
+</div>
